@@ -7,11 +7,14 @@ test('Browser Context Playwright Test', async ({ browser }) => {
     console.log("The Title is: " + await page.title());
 
     await page.locator('#username').fill("mrinmoy.blr@gmail.com");
+
     await page.locator("[type='password']").fill('Anjali123');
+
     await page.locator("#terms").click();
+
     await page.locator("#signInBtn").click();
 
-    
+
     await page.pause();
 
 
