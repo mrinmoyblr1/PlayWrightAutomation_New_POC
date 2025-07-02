@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-test('Browser Context Playwright Test', async ({ browser }) => {
+test.only('Browser Context Playwright Test', async ({ browser }) => {
     // Chrome - plugins/cookies
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -9,9 +9,13 @@ test('Browser Context Playwright Test', async ({ browser }) => {
     await page.locator("[type='password']").fill('Anjali123');
     await page.locator("#terms").click();
     await page.locator("#signInBtn").click();
-    await page.pause();
+    console.log(await page.locator("[style*='block']").textContent());
+    await expect(page.locator("[style*='block']")).toContainText('Incorrect');
 
 
+
+
+    //await page.pause();
 });
 
 
