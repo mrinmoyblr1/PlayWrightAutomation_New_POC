@@ -13,4 +13,4 @@
     git commit -m "$1"
 
     # Push the changes to the remote repository (e.g., origin main)
-    git push origin main
+    git push origin develop_001
