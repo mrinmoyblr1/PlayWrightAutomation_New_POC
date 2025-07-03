@@ -3,13 +3,15 @@ const { test, expect } = require('@playwright/test');
 
 test.only('Browser Context Playwright Test', async ({ browser }) => {
 
+    const context = await browser.newContext();
+    const page = await context.newPage();
+
 
     const userName = page.locator('#username');
     const password = page.locator("[type='password']");
 
     // Chrome - plugins/cookies
-    const context = await browser.newContext();
-    const page = await context.newPage();
+
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     console.log("The Title is: " + await page.title());
     await userName.fill("mrinmoy.blr@gmail.com");
