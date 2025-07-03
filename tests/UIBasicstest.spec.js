@@ -9,9 +9,11 @@ test.only('Browser Context Playwright Test', async ({ browser }) => {
     await page.locator("[type='password']").fill('Anjali123');
     await page.locator("#terms").click();
     await page.locator("#signInBtn").click();
-    console.log(await page.locator("[style*='block']").textContent());
 
     
+    console.log(await page.locator("[style*='block']").textContent());
+
+
     await expect(page.locator("[style*='block']")).toContainText('Incorrect');
 
 
