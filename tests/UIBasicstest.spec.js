@@ -5,6 +5,8 @@ test.only('Browser Context Playwright Test', async ({ browser }) => {
     const userName = page.locator('#username');
     const password = page.locator("[type='password']");
     const signIn = page.locator("#signInBtn");
+    const cardTitles = page.locator(".card-body a");
+
     // Chrome - plugins/cookies
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     console.log("The Title is: " + await page.title());
@@ -20,7 +22,16 @@ test.only('Browser Context Playwright Test', async ({ browser }) => {
     await password.fill('learning');
     await page.locator("#terms").click();
     await signIn.click();
-    await page.pause();
+
+    console.log(await cardTitles.nth(1).textContent());
+    console.log(await cardTitles.first().textContent());
+
+    // Get Names of all the Products
+
+
+
+
+    //await page.pause();
 });
 
 
