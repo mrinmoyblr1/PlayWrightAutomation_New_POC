@@ -23,10 +23,14 @@ test.only('Browser Context Playwright Test', async ({ browser }) => {
     await page.locator("#terms").click();
     await signIn.click();
 
-    console.log(await cardTitles.nth(1).textContent());
+    // console.log(await cardTitles.nth(1).textContent());
     console.log(await cardTitles.first().textContent());
 
     // Get Names of all the Products
+    const allTitles = await cardTitles.allTextContents();
+    console.log(allTitles);
+
+
 
 
 
