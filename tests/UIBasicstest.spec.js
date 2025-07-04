@@ -41,5 +41,11 @@ test.only('Ui Controls', async ({ page }) => {
     const password = page.locator("[type='password']");
     const dropdown = page.locator("select.form-control");
     await dropdown.selectOption("Consultant");
-    await page.pause();
+    await page.locator(".radiotextsty").nth(1).click();
+    await page.locator("#okayBtn").click();
+
+    await expect(page.locator(".radiotextsty").last()).toBeChecked();
+    console.log(await page.locator(".radiotextsty").last().isChecked()); // It will retuern boolean value.
+
+    // await page.pause();
 });
