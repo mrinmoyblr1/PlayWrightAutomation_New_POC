@@ -33,12 +33,12 @@ test('Page Playwright Test', async ({ page }) => {
     console.log("The Title is: " + await page.title());
     await expect(page).toHaveTitle("Google");
 });
-
-test.only('Ui Controls', async ({ page }) => {
+test('Ui Controls', async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const userName = page.locator('#username');
     const password = page.locator("[type='password']");
     const dropdown = page.locator("select.form-control");
+    const documentLink = page.locator("[href*='document']");
     await dropdown.selectOption("Consultant");
     await page.locator(".radiotextsty").nth(1).click();
     await page.locator("#okayBtn").click();
@@ -47,6 +47,32 @@ test.only('Ui Controls', async ({ page }) => {
     await page.locator("#terms").click();
     expect(await page.locator("#terms")).toBeChecked();
     await page.locator("#terms").uncheck();
-    expect(await page.locator("#terms").isChecked()).toBeFalsy(); // Here we are checking the checkbox is unchecked.
+    expect(await page.locator("#terms").isChecked()).toBeFalsy(); // Here we are checking the checkbox is unchecked. 
+    await expect(page.locator(".blinkingText")).toHaveAttribute('class', 'blinkingText');
+    // Another option
+    await expect(documentLink).toHaveAttribute('class', 'blinkingText');
     // await page.pause();
 });
+
+
+
+test.only('Child Windows Handles', async ({ browser }) => {
+
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    const documentLink = page.locator("[href*='document']");
+    documentLink.click();
+    const page2 = context.waitForEvent('page');
+
+
+
+
+
+
+
+
+});
+
+
+
