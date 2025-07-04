@@ -62,14 +62,9 @@ test.only('Child Windows Handles', async ({ browser }) => {
     const page = await context.newPage();
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const documentLink = page.locator("[href*='document']");
-    documentLink.click();
-    const page2 = context.waitForEvent('page');
 
-
-
-
-
-
+    context.waitForEvent('page'); // This will listen for any page
+    documentLink.click();  // New page is opened here
 
 
 });
