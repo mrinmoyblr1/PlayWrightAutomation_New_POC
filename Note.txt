@@ -1,0 +1,2 @@
+In VS Code:
+^\s*$\n

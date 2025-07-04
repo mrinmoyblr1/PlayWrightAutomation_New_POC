@@ -34,7 +34,6 @@ test('Page Playwright Test', async ({ page }) => {
     await expect(page).toHaveTitle("Google");
 });
 
-
 test.only('Ui Controls', async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const userName = page.locator('#username');
@@ -43,9 +42,11 @@ test.only('Ui Controls', async ({ page }) => {
     await dropdown.selectOption("Consultant");
     await page.locator(".radiotextsty").nth(1).click();
     await page.locator("#okayBtn").click();
-
     await expect(page.locator(".radiotextsty").last()).toBeChecked();
     console.log(await page.locator(".radiotextsty").last().isChecked()); // It will retuern boolean value.
-
+    await page.locator("#terms").click();
+    expect(await page.locator("#terms")).toBeChecked();
+    await page.locator("#terms").uncheck();
+    expect(await page.locator("#terms").isChecked()).toBeFalsy(); // Here we are checking the checkbox is unchecked.
     // await page.pause();
 });
