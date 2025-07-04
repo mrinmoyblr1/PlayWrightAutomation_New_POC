@@ -28,10 +28,18 @@ test('Browser Context Playwright Test', async ({ browser }) => {
     console.log(allTitles);
     //await page.pause();
 });
-
-
 test('Page Playwright Test', async ({ page }) => {
     await page.goto("https://google.com");
     console.log("The Title is: " + await page.title());
     await expect(page).toHaveTitle("Google");
+});
+
+
+test.only('Ui Controls', async ({ page }) => {
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    const userName = page.locator('#username');
+    const password = page.locator("[type='password']");
+    const dropdown = page.locator("select.form-control");
+    await dropdown.selectOption("Consultant");
+    await page.pause();
 });

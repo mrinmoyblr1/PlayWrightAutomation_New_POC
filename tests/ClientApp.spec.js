@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-test.only('Browser Context Playwright Test111', async ({ page }) => {
+test('Browser Context Playwright Test111', async ({ page }) => {
 
     await page.goto("https://rahulshettyacademy.com/client/");
     await page.locator("#userEmail").fill("mrinmoy.blr@gmail.com");
