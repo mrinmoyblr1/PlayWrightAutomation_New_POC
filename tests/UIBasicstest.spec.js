@@ -64,14 +64,18 @@ test.only('Child Windows Handles', async ({ browser }) => {
     const documentLink = page.locator("[href*='document']");
 
 
-    const [newPage] = Promise.all(
+    const [newPage] = await Promise.all(
         [
             context.waitForEvent('page'),  // This will listen for any page
             documentLink.click(),   // New page is opened here
         ])
 
+    console.log(await newPage.locator(".red").textContent());
 
-        
+
+
+
+
 
 
 
