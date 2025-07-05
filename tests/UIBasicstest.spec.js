@@ -34,10 +34,6 @@ test('Page Playwright Test', async ({ page }) => {
     console.log("The Title is: " + await page.title());
     await expect(page).toHaveTitle("Google");
 });
-
-
-
-
 test('Ui Controls', async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const userName = page.locator('#username');
@@ -60,30 +56,37 @@ test('Ui Controls', async ({ page }) => {
 });
 
 
-
-
-
 test('Child Windows Handles', async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
     const userName = page.locator('#username');
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const documentLink = page.locator("[href*='document']");
-
     const [newPage] = await Promise.all(
         [
             context.waitForEvent('page'),  // This will listen for any page
             documentLink.click(),   // New page is opened here
         ])
-
     const text = await newPage.locator(".red").textContent();
     console.log(text);
     const arrayText = text.split('@');
     const domain = arrayText[1].split(" ")[0];
     console.log(domain);
     await userName.fill(domain);
-
-    await page.pause();
+    //await page.pause();
     console.log(await userName.textContent());
+});
 
+
+test('test', async ({ page }) => {
+  await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+  await page.getByRole('textbox', { name: 'Username:' }).click();
+  await page.getByRole('textbox', { name: 'Username:' }).fill('rahulshetty');
+  await page.getByRole('textbox', { name: 'Username:' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Password:' }).fill('asdf');
+  await page.locator('label:nth-child(2) > .checkmark').click();
+  await page.getByRole('button', { name: 'Okay' }).click();
+  await page.getByRole('checkbox', { name: 'I Agree to the terms and' }).check();
+  await page.getByRole('button', { name: 'Sign In' }).click();
+  await page.getByText('Incorrect username/password.').click();
 });
