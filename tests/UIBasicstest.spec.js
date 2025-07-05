@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+const { Console } = require('console');
 test('Browser Context Playwright Test', async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -57,32 +58,25 @@ test('Ui Controls', async ({ page }) => {
 
 
 test.only('Child Windows Handles', async ({ browser }) => {
-
     const context = await browser.newContext();
     const page = await context.newPage();
+    const userName = page.locator('#username');
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const documentLink = page.locator("[href*='document']");
-
-
     const [newPage] = await Promise.all(
         [
             context.waitForEvent('page'),  // This will listen for any page
             documentLink.click(),   // New page is opened here
         ])
-
-    const text = console.log(await newPage.locator(".red").textContent());
+    const text = await newPage.locator(".red").textContent();
     console.log(text);
-    
+    const arrayText = text.split('@');
+    const domain = arrayText[1].split(" ")[0];
+    console.log(domain);
+    await userName.fill(domain);
 
-
-
-
-
-
-
-
+    console.log("=========");
+    await page.pause();
+    console.log(await userName.textContent());
 
 });
-
-
-

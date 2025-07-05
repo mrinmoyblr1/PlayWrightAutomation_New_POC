@@ -1,10 +1,13 @@
-// import { test as base } from '@playwright/test';
-// const test = base.extend({
-//     user: async ({ }, use) => {
-//         const userData = { username: 'john', role: 'admin' };
-//         await use(userData); // makes `user` available in tests
+// function greaterThanFive(n) {
+//     let message = 'Please email us at mentor@rahulshettyacademy.com with below template to receive response';
+//     if (n > 5) {
+//         message = 'Please email us at mentor@rahulshettyacademy.com with below template to receive response';
+//         console.log(message);
+//         return message.split(' ')
+//     } else {
+//         console.log(message);
+//         return message.split(' ');
 //     }
-// });
-// test('test with custom user', async ({ user }) => {
-//     console.log(user.username); // 'john'
-// });
+// }
+
+// console.log(greaterThanFive(2));
