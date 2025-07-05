@@ -70,7 +70,9 @@ test.only('Child Windows Handles', async ({ browser }) => {
             documentLink.click(),   // New page is opened here
         ])
 
-    console.log(await newPage.locator(".red").textContent());
+    const text = console.log(await newPage.locator(".red").textContent());
+    console.log(text);
+    
 
 
 
