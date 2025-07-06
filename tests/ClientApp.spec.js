@@ -39,16 +39,25 @@ test.only('Browser Context Playwright Test111', async ({ page }) => {
             break;
         }
     }
-
     expect(await page.locator(".user__name label").first()).toHaveText(email);  // The method toHaveText(email) is part of expect
     await page.locator(".action__submit").click();
-
     console.log(await page.locator(".hero-primary").textContent());
     expect(await page.locator(".hero-primary")).toHaveText(" Thankyou for the order. ");
-
     //console.log(await page.locator("label[class=ng-star-inserted]").textContent());
     const orderID = await page.locator(".em-spacer-1 .ng-star-inserted").textContent();// Here we used parent css then child css
     console.log(orderID);
+    await page.locator("button[routerlink*='myorders']").click();
+    const rows = await page.locator("tbody tr");
 
-    // await page.pause();
+
+    for (let i = 0; i < await rows.count(); i++) {
+        const rowOrderID = await rows.nth(i).locator("th").textContent();
+        
+        if (orderID.includes(rowOrderID)) {
+            await rows.nth(i).locator("button").first().click();
+            break;
+        }
+    }
+
+    await page.pause();
 });
