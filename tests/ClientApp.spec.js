@@ -47,17 +47,15 @@ test.only('Browser Context Playwright Test111', async ({ page }) => {
     const orderID = await page.locator(".em-spacer-1 .ng-star-inserted").textContent();// Here we used parent css then child css
     console.log(orderID);
     await page.locator("button[routerlink*='myorders']").click();
+    await page.locator("tbody").waitFor();
     const rows = await page.locator("tbody tr");
-
-
     for (let i = 0; i < await rows.count(); i++) {
         const rowOrderID = await rows.nth(i).locator("th").textContent();
-        
         if (orderID.includes(rowOrderID)) {
             await rows.nth(i).locator("button").first().click();
             break;
         }
     }
-
-    await page.pause();
+    const orderIDDetails = await page.locator(".col-text").textContent();
+    expect(orderID.includes(orderIDDetails)).toBeTruthy();
 });
