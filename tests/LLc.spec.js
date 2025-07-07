@@ -9,6 +9,12 @@ test.only('Playwright Special Locator', async ({ page }) => {
     await page.getByRole("button", { name: 'Submit' }).click();
     await page.getByText("Success! The Form has been submitted successfully!.").isVisible();
     await page.getByRole("Link", { name: 'Shop' }).click();
-    await page.locator("app-card").filter({ hasText: 'Nokia Edge' }).getByRole("button").click(); 
+    await page.locator("app-card").filter({ hasText: 'Nokia Edge' }).getByRole("button").click();
     // Here we do not need to mention name of the button as thre is only one button
+
+
+    //await page.pause();
+    //await page.pause();
+    //await page.pause();
+
 });
