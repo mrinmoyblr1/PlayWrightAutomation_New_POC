@@ -5,16 +5,17 @@ test.only('Playwright Special Locator', async ({ page }) => {
     await page.getByLabel("Employed").click();
     await page.getByLabel("Employed").check();
     await page.getByLabel("Gender").selectOption("Female");
-    await page.getByPlaceholder("Password").fill("ASD");
+
+    // await page.getByPlaceholder("Password").fill("ASD");
+    await page.getByLabel("Password").fill("Biswas");
+
+
+
     await page.getByRole("button", { name: 'Submit' }).click();
+
     await page.getByText("Success! The Form has been submitted successfully!.").isVisible();
     await page.getByRole("Link", { name: 'Shop' }).click();
     await page.locator("app-card").filter({ hasText: 'Nokia Edge' }).getByRole("button").click();
     // Here we do not need to mention name of the button as thre is only one button
 
-
-    //await page.pause();
-    //await page.pause();
-    //await page.pause();
-
-});
+}); 
